@@ -46,7 +46,7 @@ BigInt toDec(std::vector<std::string> &number)
     return result;
 }
 
-void addExtraZeros(std::vector<std::string> &result, int count)
+void addZeroByte(std::vector<std::string> &result, int count)
 {
     reverse(result.begin(), result.end());
 
@@ -105,12 +105,12 @@ BigInt operatorOr(BigInt &numberA, BigInt &numberB)
     if (strFirst.size() != maxSize)
     {
         int count = maxSize - (int)strFirst.size();
-        addExtraZeros(strFirst, count);
+        addZeroByte(strFirst, count);
     }
     else
     {
         int count = maxSize - (int)strSecond.size();
-        addExtraZeros(strSecond, count);
+        addZeroByte(strSecond, count);
     }
 
     for (int i = 0; i < maxSize; i++)
@@ -149,7 +149,7 @@ bool isDigit(std::string str)
     return true;
 }
 
-void BigInt ::SetSign(int number)
+void BigInt ::setSign(int number)
 {
     if (number >= 0)
     {
@@ -161,26 +161,26 @@ void BigInt ::SetSign(int number)
     }
 }
 
-bool BigInt ::GetSign()
+bool BigInt ::getSign()
 {
     return this->sign;
 }
 
-void BigInt::SetNumber(int number)
+void BigInt::setNumber(int number)
 {
     BigInt tmp(number);
     this->data = tmp.data;
     this->sign = tmp.sign;
 }
 
-void BigInt::SetNumber(std::string str)
+void BigInt::setNumber(std::string str)
 {
     BigInt tmp(str);
     this->data = tmp.data;
     this->sign = tmp.sign;
 }
 
-void BigInt::SetNumber(std::vector<int> digits)
+void BigInt::setNumber(std::vector<int> digits)
 {
     this->data = digits;
 }
@@ -192,7 +192,7 @@ BigInt ::BigInt()
 
 BigInt ::BigInt(int number)
 {
-    this->SetSign(number);
+    this->setSign(number);
 
     number = abs(number);
 
@@ -281,11 +281,11 @@ BigInt BigInt::operator~() const
 
     if (this->sign == false)
     {
-        temp.SetSign(1);
+        temp.setSign(1);
     }
     else
     {
-        temp.SetSign(-1);
+        temp.setSign(-1);
     }
 
     return temp;
@@ -392,7 +392,7 @@ BigInt &BigInt::operator+=(const BigInt &other)
     return *this;
 }
 
-void AddExtraZeros(std::string &number, int n)
+void addExtraZeros(std::string &number, int n)
 {
     for (int i = 0; i < n; i++)
     {
@@ -400,10 +400,10 @@ void AddExtraZeros(std::string &number, int n)
     }
 }
 
-int GetFactorValue(int index, std::string strDigit)
+int getFactorValue(int index, std::string strDigit)
 {
     std::reverse(strDigit.begin(), strDigit.end());
-    AddExtraZeros(strDigit, MAX_NUMBER_LENGTH - strDigit.length());
+    addExtraZeros(strDigit, MAX_NUMBER_LENGTH - strDigit.length());
     std::reverse(strDigit.begin(), strDigit.end());
 
     return strDigit[index] - '0';
@@ -420,7 +420,7 @@ void deleteExtraZeros(BigInt &result)
         }
     }
 
-    result.SetNumber(temp);
+    result.setNumber(temp);
 }
 
 BigInt &BigInt::operator*=(const BigInt &other)
@@ -440,7 +440,7 @@ BigInt &BigInt::operator*=(const BigInt &other)
                 }
             }
 
-            int factor = GetFactorValue(j, std::to_string(other.data[i]));
+            int factor = getFactorValue(j, std::to_string(other.data[i]));
             int carry = 0;
             realIndex++;
 
@@ -451,7 +451,7 @@ BigInt &BigInt::operator*=(const BigInt &other)
                 std::string currentDigit = std::to_string(this->data[part]);
                 for (int index = MAX_NUMBER_LENGTH - 1; index >= 0; index--)
                 {
-                    int factor2 = GetFactorValue(index, currentDigit);
+                    int factor2 = getFactorValue(index, currentDigit);
                     temp += std::to_string((factor * factor2 + carry) % 10);
                     carry = (factor * factor2 + carry) / 10;
                 }
@@ -463,7 +463,7 @@ BigInt &BigInt::operator*=(const BigInt &other)
             }
 
             std::reverse(temp.begin(), temp.end());
-            AddExtraZeros(temp, realIndex);
+            addExtraZeros(temp, realIndex);
             result += BigInt(temp);
         }
     }
@@ -472,12 +472,12 @@ BigInt &BigInt::operator*=(const BigInt &other)
 
     if (this->sign != other.sign)
     {
-        result.SetSign(-1);
+        result.setSign(-1);
     }
 
     else
     {
-        result.SetSign(true);
+        result.setSign(true);
     }
 
     *this = result;
@@ -557,7 +557,7 @@ BigInt &BigInt::operator-=(const BigInt &other)
     return *this;
 }
 
-int GetFactor(BigInt first, BigInt second)
+int getFactor(BigInt first, BigInt second)
 {
     int factor = 0;
 
@@ -586,15 +586,15 @@ BigInt &BigInt::operator/=(const BigInt &other)
 
     BigInt divider = other;
     BigInt divisible = *this;
-    divisible.SetSign(false);
+    divisible.setSign(false);
 
     if (divisible < divider)
     {
-        this->SetNumber(0);
+        this->setNumber(0);
         return *this;
     }
 
-    divider.SetSign(1);
+    divider.setSign(1);
 
     BigInt currentDecreasing = BigInt(firstDigit.substr(0, secondDigit.length()));
 
@@ -615,7 +615,7 @@ BigInt &BigInt::operator/=(const BigInt &other)
             index++;
         }
 
-        factor = GetFactor(currentDecreasing, divider);
+        factor = getFactor(currentDecreasing, divider);
         result += std::to_string(factor);
 
         if (secondDigit.length() + index >= firstDigit.length())
@@ -634,16 +634,16 @@ BigInt &BigInt::operator/=(const BigInt &other)
     }
 
     bool firstSign = this->sign;
-    this->SetNumber(result);
+    this->setNumber(result);
 
     if (firstSign != other.sign)
     {
-        this->SetSign(-1);
+        this->setSign(-1);
     }
 
     else
     {
-        this->SetSign(false);
+        this->setSign(false);
     }
 
     return *this;
@@ -674,7 +674,7 @@ BigInt &BigInt::operator%=(const BigInt &other)
     BigInt temp = (*this) / other;
     BigInt result = (*this) - other * temp;
 
-    this->SetNumber(result.data);
+    this->setNumber(result.data);
     return *this;
 }
 
@@ -682,7 +682,6 @@ BigInt &BigInt::operator&=(const BigInt &other)
 {
     BigInt number1 = *this;
     BigInt number2 = other;
-
     BigInt temp = operatorAnd(number1, number2);
 
     this->data = temp.data;
@@ -772,7 +771,7 @@ bool BigInt::operator>=(const BigInt &other) const
     return (*this > other || *this == other);
 }
 
-std::string BigInt::GetString() const
+std::string BigInt::getString() const
 {
     std::string result = "";
 
@@ -789,12 +788,12 @@ BigInt::operator int() const
 {
     if (*this < BigInt(INT_MIN) || *this > BigInt(INT_MAX))
     {
-        throw std::logic_error("not integer");
+        throw std::logic_error("int overflow");
     }
 
     else
     {
-        return std::stoi(this->GetString());
+        return std::stoi(this->getString());
     }
 }
 
@@ -883,8 +882,11 @@ BigInt operator%(const BigInt &first, const BigInt &second)
 
 BigInt operator&(const BigInt &first, const BigInt &second)
 {
-    BigInt temp = first;
-    temp ^= second;
+    BigInt numberA = first;
+    BigInt numberB = second;
+
+    BigInt temp = operatorAnd(numberA, numberB);
+
     return temp;
 }
 
@@ -901,7 +903,7 @@ BigInt operator|(const BigInt &first, const BigInt &second)
 std::ostream &operator<<(std::ostream &out, const BigInt &i)
 {
     BigInt temp = i;
-    if (temp.GetSign() == 1)
+    if (temp.getSign() == 1)
     {
         out << "-";
     }
