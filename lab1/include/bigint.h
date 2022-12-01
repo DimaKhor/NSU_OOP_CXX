@@ -15,11 +15,11 @@
 class BigInt
 {
 public:
-    void SetSign(int number);
-    bool GetSign();
-    void SetNumber(int number);
-    void SetNumber(std::string str);
-    void SetNumber(std::vector<int> digits);
+    void setSign(int number);
+    bool getSign();
+    void setNumber(int number);
+    void setNumber(std::string str);
+    void setNumber(std::vector<int> digits);
 
     BigInt();
     BigInt(int number);
@@ -57,7 +57,7 @@ public:
 
     operator int() const;
     operator std::string() const;
-    std::string GetString() const;
+    std::string getString() const;
 
     size_t size() const;
 private:
@@ -76,4 +76,3 @@ BigInt operator|(const BigInt&, const BigInt&);
 
 std::ostream &operator<<(std::ostream &out, const BigInt &i);
 
-#endif /* Header_h */
