@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "bigintHeader.h"
+#include "bigint.h"
 
 TEST (constructor_tests, empty_constructor) {
     BigInt a;
