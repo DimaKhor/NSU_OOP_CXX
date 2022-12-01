@@ -1,5 +1,5 @@
-#ifndef Header_h
-#define Header_h
+#ifndef bigint_h
+#define bigint_h
 
 #include <iostream>
 #include <string>
