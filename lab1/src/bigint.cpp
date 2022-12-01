@@ -554,6 +554,7 @@ BigInt &BigInt::operator-=(const BigInt &other)
         result.push_back(reduced[i]);
     }
     this->data = result;
+    
     return *this;
 }
 
