@@ -1,4 +1,4 @@
-#include "bigintHeader.h"
+#include "bigint.h"
 
 std::vector<std::string> toBin(BigInt &number)
 {
