@@ -698,6 +698,7 @@ BigInt &BigInt::operator|=(const BigInt &other)
     BigInt temp = operatorOr(number1, number2);
 
     this->data = temp.data;
+    
     return *this;
 }
 
