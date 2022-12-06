@@ -41,9 +41,9 @@ TEST (operators_tests, assignment_operator) {
 }
 
 TEST (binary_operators_tests, not_operator) {
-    BigInt a(4);
+    BigInt a(257);
     a = ~a;
-    EXPECT_EQ(a.getString(), "-3");
+    EXPECT_EQ(a.getString(), "-258");
 }
 
 TEST (operators_tests, increment_operator) {
@@ -349,7 +349,7 @@ TEST(test_type_conversion_operators, int_conversion)
     }
     catch(const std::invalid_argument & ex)
     {
-        EXPECT_STREQ(ex.what(), "int overflow");
+        EXPECT_STREQ(ex.what(), "invalid_argument");
     }
 }
 
