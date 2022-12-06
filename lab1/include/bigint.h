@@ -7,10 +7,15 @@
 #include <cmath>
 #include <algorithm>
 
-#define BIT_SIZE 8
-#define BASE 2
-#define MAX_NUMBER 1000000000
-#define MAX_NUMBER_LENGTH 9
+const int BIT_SIZE = 8;
+const int BASE = 2;
+const int MAX_NUMBER = 1000000000;
+const int MAX_NUMBER_LENGTH = 9;
+
+const char ONE_SIGN = '1';
+const char ZERO_SIGN = '0';
+//const char* ONE_LINE = "1";
+//const char* ZERO_LINE = "1";
 
 class BigInt
 {
@@ -75,3 +80,5 @@ BigInt operator&(const BigInt&, const BigInt&);
 BigInt operator|(const BigInt&, const BigInt&);
 
 std::ostream &operator<<(std::ostream &out, const BigInt &i);
+
+#endif
