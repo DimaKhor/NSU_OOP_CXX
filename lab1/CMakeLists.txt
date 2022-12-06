@@ -3,8 +3,8 @@
 
  set(CMAKE_CXX_STANDARD 14)
 
- add_library(BigInt STATIC bigint.cpp)
- target_include_directories(BigInt PUBLIC .)
+ add_library(BigInt STATIC src/bigint.cpp)
+ target_include_directories(BigInt PUBLIC include)
 
  include(FetchContent)
  FetchContent_Declare(
@@ -13,5 +13,5 @@
  )
  FetchContent_MakeAvailable(googletest)
 
- add_executable(tests test.cpp)
+ add_executable(tests test/test.cpp)
  target_link_libraries(tests gtest_main BigInt)
