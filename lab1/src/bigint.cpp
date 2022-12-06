@@ -75,7 +75,7 @@ BigInt operatorAnd(BigInt &first, BigInt &second)
             {
                 temp += "0";
             }
-            else if (strFirst[indexFirst][j] == '1')
+            else if (strFirst[indexFirst][j] == ONE_SIGN)
             {
                 temp += "1";
             }
@@ -121,7 +121,7 @@ BigInt operatorOr(BigInt &numberA, BigInt &numberB)
             if (strFirst[indexA][j] != strSecond[indexB][j])
                 temp += "1";
 
-            else if (strFirst[indexA][j] == '0')
+            else if (strFirst[indexA][j] == ZERO_SIGN)
                 temp += "0";
 
             else
@@ -263,32 +263,11 @@ BigInt& BigInt::operator=(const BigInt& other)
 BigInt BigInt::operator~() const
 {
     BigInt thisCopy = *this;
-    std::vector<std::string> str = toBin(thisCopy);
-    std::vector<std::string> part;
 
-    for (int i = 0; i < str.size(); i++)
-    {
-        std::string temp = "";
+    thisCopy += 1;
+    thisCopy.sign = !thisCopy.sign;
 
-        for (int j = 0; j < BIT_SIZE; j++)
-        {
-            str[i][j] == '1' ? temp += "0" : temp += "1";
-        }
-        part.push_back(temp);
-    }
-
-    BigInt temp = toDec(part);
-
-    if (this->sign == false)
-    {
-        temp.setSign(1);
-    }
-    else
-    {
-        temp.setSign(-1);
-    }
-
-    return temp;
+    return thisCopy;
 }
 
 BigInt& BigInt::operator++()
@@ -414,7 +393,7 @@ void deleteExtraZeros(BigInt &result)
     std::string temp = result.operator std::string();
     if (result != BigInt(0))
     {
-        while (temp[0] == '0')
+        while (temp[0] == ZERO_SIGN)
         {
             temp.erase(0, 1);
         }
@@ -576,31 +555,13 @@ int getFactor(BigInt first, BigInt second)
     return factor;
 }
 
-BigInt &BigInt::operator/=(const BigInt &other)
+std::string division(std::string result, std::string firstDigit, std::string secondDigit, BigInt divider)
 {
-    if (other == BigInt(0))
-        throw std::logic_error("division by zero");
-
-    std::string firstDigit = this->operator std::string();
-    std::string secondDigit = other.operator std::string();
-    std::string result = "";
-
-    BigInt divider = other;
-    BigInt divisible = *this;
-    divisible.setSign(false);
-
-    if (divisible < divider)
-    {
-        this->setNumber(0);
-        return *this;
-    }
-
-    divider.setSign(1);
-
     BigInt currentDecreasing = BigInt(firstDigit.substr(0, secondDigit.length()));
 
     int factor = 0;
     int index = 0;
+
     while (secondDigit.length() + index <= firstDigit.length())
     {
         if (divider > currentDecreasing)
@@ -633,6 +594,32 @@ BigInt &BigInt::operator/=(const BigInt &other)
 
         index++;
     }
+
+    return result;
+}
+
+BigInt &BigInt::operator/=(const BigInt &other)
+{
+    if (other == BigInt(0))
+        throw std::logic_error("division by zero");
+
+    std::string firstDigit = this->operator std::string();
+    std::string secondDigit = other.operator std::string();
+    std::string result = "";
+
+    BigInt divider = other;
+    BigInt divisible = *this;
+    divisible.setSign(false);
+
+    if (divisible < divider)
+    {
+        this->setNumber(0);
+        return *this;
+    }
+
+    divider.setSign(1);
+
+    result = division(result, firstDigit, secondDigit, divider);
 
     bool firstSign = this->sign;
     this->setNumber(result);
