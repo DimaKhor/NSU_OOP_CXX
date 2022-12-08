@@ -11,6 +11,9 @@
 #include <regex>
 #include <thread>
 
+const int online = 1;
+const int offline = 0;
+
 struct point
 {
     point() = default;

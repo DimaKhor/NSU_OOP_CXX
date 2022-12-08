@@ -1,8 +1,5 @@
 #include "gameOfLife.h"
 
-const int offline = 1;
-const int online = 0;
-
 using namespace std;
 
 point::point(bool p_is_life, int xt, int yt)
@@ -72,6 +69,7 @@ GameState::GameState(string file_name)
     fin.open(file_name.c_str());
     if (!fin.is_open())
         exit(1);
+
     regex universeNameRegex("[#N ]([A-Za-z]*)");
     regex roolsRegex("(#R )(B[0-9]+\/S[0-9]+)");
     regex sizeRegex("[#Size ]([0-9]+) ([0-9]+)");
@@ -314,7 +312,7 @@ void gameModeChoice(int& gameMode, int& iterations, string& inputFile, string& o
     mym.startMessage();
 
     if (argc > 1) {
-        gameMode = online;
+        gameMode = offline;
         for (int i = 1; i < argc; i++)
         {
             if (argv[i] == string("-i"))
@@ -341,7 +339,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
     field.initWorld();
     field.showRools();
     int command;
-    if (gameMode == offline) {
+    if (gameMode == online) {
         CommandState com;
 
         Message mym;
