@@ -20,7 +20,7 @@ void Message::startMessage() {
     cout << "3. exit - end the game." << endl;
     cout << "4. tick <n> -count game state after n iteration." << endl;
     sleep(3);
-    system("clear");
+    //system("clear");
 }
 void Message::warningMessage() {
     cout << "Warning!" << endl;
