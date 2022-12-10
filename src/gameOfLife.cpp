@@ -26,7 +26,7 @@ void Message::warningMessage() {
     cout << "Warning!" << endl;
     sleep(3);
 }
-void Message::unknowmcommand() {
+void Message::unknownCommand() {
     cout << "There is no such command!" << endl;
     sleep(3);
 }
@@ -71,7 +71,7 @@ GameState::GameState(string file_name)
         exit(1);
 
     regex universeNameRegex("[#N ]([A-Za-z]*)");
-    regex roolsRegex("(#R )(B[0-9]+\/S[0-9]+)");
+    regex rulesRegex("(#R )(B[0-9]+\/S[0-9]+)");
     regex sizeRegex("[#Size ]([0-9]+) ([0-9]+)");
     regex digits("[0-9]+");
     regex letters("[A-Za-z ]+");
@@ -87,9 +87,9 @@ GameState::GameState(string file_name)
         this->universeName.erase(this->universeName.find("#N "), 3);
     }
 
-    //Read rools for the game
+    //Read rules of the game
     fin.getline(temp, 256);
-    if (std::regex_search(temp, roolsRegex))
+    if (std::regex_search(temp, rulesRegex))
     {
         string str(temp);
         auto iter = sregex_iterator(str.begin(), str.end(), digits);
@@ -129,19 +129,23 @@ Field::Field(GameState& _game)
 bool Field::should_be_born(int x)
 {
     size_t found = game->gameRools.find(to_string(x));
-    if (found != std::string::npos) return true;
-    else return false;
+    if (found != std::string::npos)
+        return true;
+    else
+        return false;
 }
 bool Field::should_survive(int x)
 {
     size_t found = game->survivalRools.find(to_string(x));
-    if (found != std::string::npos) return true;
-    else return false;
+    if (found != std::string::npos)
+        return true;
+    else
+        return false;
 }
 
-void Field::showRools()
+void Field::showRules()
 {
-    cout << "This universe have such Rules: " << endl;
+    cout << "This universe have these Rules: " << endl;
     cout << "#N" << game->universeName << endl;
     cout << "#R " << "#B" << game->gameRools << "/" << "S" << game->survivalRools << endl;
     cout << "#S " << game->world_w << " " << game->world_h << endl;
@@ -173,7 +177,7 @@ void Field::nextWorld()
 {
     vector<point> temp;
 
-    int neighbours = 0, _x, _y, x_, y_; //x and y on top and bottom(left and right for x axis) :)
+    int neighbours = 0, _x, _y, x_, y_; //x and y on top and bottom(left and right for x axis)
     for (int y = 0; y < game->world_h; y++)
     {
         for (int i = 0; i < game->world_w; i++)
@@ -270,6 +274,7 @@ void Field::initWorld()
 {
     vector<point> temp;
     world.reserve(game->world_h);
+
     for (size_t y = 0; y < game->world_h; y++)
     {
         temp.resize(0);
@@ -337,7 +342,7 @@ void gameModeChoice(int& gameMode, int& iterations, string& inputFile, string& o
 void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
 {
     field.initWorld();
-    field.showRools();
+    field.showRules();
     int command;
     if (gameMode == online) {
         CommandState com;
@@ -353,7 +358,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             }
             else if (command == com.exit)
             {
-                cout << "Thank you for playing, hope to see you again :)" << endl;
+                cout << "Thank you for playing, can't wait to see you again :)" << endl;
                 exit(0);
             }
             else if (command == com.help)
@@ -377,7 +382,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             else
             {
                 mym.warningMessage();
-                mym.unknowmcommand();
+                mym.unknownCommand();
             }
         }
     }
@@ -390,6 +395,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             iterations--;
         }
         field.saveField(outputFile);
+
         cout << "file saved in: " << outputFile << "!";
     }
 }

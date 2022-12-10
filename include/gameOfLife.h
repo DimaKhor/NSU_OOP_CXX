@@ -28,7 +28,7 @@ class Message
 public:
     void startMessage();
     void warningMessage();
-    void unknowmcommand();
+    void unknownCommand();
     void helpMessage();
 };
 
@@ -37,6 +37,7 @@ class CommandState
 public:
     ~CommandState() = default;
     int readCommand();
+
     static int const exit = 1;
     static int const dump = 2;
     static int const tick = 3;
@@ -72,7 +73,7 @@ public:
     void initWorld();
     void nextWorld();
     void printWorld();
-    void showRools();
+    void showRules();
     void saveField(std::string outputFile);
 private:
     bool should_be_born(int x);
