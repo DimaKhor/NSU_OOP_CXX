@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 
     if (inputFile.empty())
         inputFile = "file.txt";
+
     GameState mylife(inputFile);
 
     Field field(mylife);
