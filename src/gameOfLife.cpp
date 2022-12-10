@@ -31,11 +31,11 @@ void Message::unknownCommand() {
     sleep(3);
 }
 void Message::helpMessage() {
-    cout << "There are such commands:" << endl;
+    cout << "There are four commands:" << endl;
     cout << "1. help - show game reference." << endl;
-    cout << "2. dump<filename> -save current universe state." << endl;
+    cout << "2. dump <filename> - save current universe state in file." << endl;
     cout << "3. exit - end the game." << endl;
-    cout << "4. tick <n> -count game state after n iteration." << endl;
+    cout << "4. tick <n> - count game state after n iteration." << endl;
     sleep(3);
 }
 
@@ -371,9 +371,11 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
                 cin >> iterations;
                 while (iterations > 0)
                 {
-                    system("clear");
-                    field.printWorld();
-                    sleep(10);
+                    if (iterations == 1)
+                    {
+                        system("clear");
+                        field.printWorld();
+                    }
                     field.nextWorld();
                     iterations--;
                 }
