@@ -3,7 +3,7 @@ project(gameOfLife)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_library(gameOfLife STATIC src/gameOfLife.cpp)
+add_library(gameOfLife STATIC lab2/src/gameOfLife.cpp)
 target_include_directories(gameOfLife PUBLIC include)
 add_executable(main src/main.cpp)
 target_link_libraries(main PUBLIC gameOfLife)
