@@ -1,13 +1,18 @@
-//
-// Created by Дмитрий Хорошев on 16.12.2022.
-//
+#ifndef commandstate_h
+#define commandstate_h
 
-#ifndef BIGINT_COMMANDSTATE_H
-#define BIGINT_COMMANDSTATE_H
+class CommandState
+{
+public:
+    ~CommandState() = default;
+    int readCommand();
 
-
-class commandstate {
-
+    static int const exit = 1;
+    static int const dump = 2;
+    static int const tick = 3;
+    static int const help = 4;
+private:
+    std::string currentCommand;
 };
 
 
