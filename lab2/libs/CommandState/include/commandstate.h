@@ -16,4 +16,4 @@ private:
 };
 
 
-#endif //BIGINT_COMMANDSTATE_H
+#endif
