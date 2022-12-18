@@ -2,13 +2,6 @@
 
 using namespace std;
 
-point::point(bool p_is_life, int xt, int yt)
-{
-    point_is_life = p_is_life;
-    x = xt;
-    y = yt;
-}
-
 void gameModeChoice(int& gameMode, int& iterations, string& inputFile, string& outputFile, int argc, char** argv)
 {
     Message mym;

@@ -7,20 +7,15 @@
 #include <fstream>
 #include <utility>
 #include <vector>
-#include <string>
 #include <thread>
+
+#include "field.h"
+#include "message.h"
+#include "commandstate.h"
 
 const int online = 1;
 const int offline = 0;
 
-struct point
-{
-    point() = default;
-    point(bool p_is_life, int xt, int yt);
-    bool point_is_life;
-    int x = 0;
-    int y = 0;
-};
 
 void gameModeChoice(int& gameMode, int& iterations, std::string& inputFile, std::string& outputFile, int argc, char** argv);
 

@@ -3,7 +3,7 @@
 
 int CommandState::readCommand()
 {
-    cin >> currentCommand;
+    std::cin >> currentCommand;
 
     //Exit command
     if (currentCommand == "exit")

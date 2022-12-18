@@ -1,6 +1,9 @@
 #ifndef commandstate_h
 #define commandstate_h
 
+#include <string>
+#include <iostream>
+
 class CommandState
 {
 public:

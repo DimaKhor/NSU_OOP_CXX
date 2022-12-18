@@ -1,7 +1,10 @@
-#ifndef BIGINT_FIELD_H
-#define BIGINT_FIELD_H
+#ifndef field_h
+#define field_h
 
 #include <string>
+#include <iostream>
+#include <unistd.h>
+#include "gamestate.h"
 
 class Field
 {
@@ -22,4 +25,4 @@ private:
     bool should_survive(int x);
 };
 
-#endif //BIGINT_FIELD_H
+#endif
