@@ -1,4 +1,4 @@
-#include "gamestate.h"
+#include "gameState.h"
 
 using namespace std;
 
@@ -41,9 +41,9 @@ GameState::GameState(string file_name)
         string str(temp);
         auto iter = sregex_iterator(str.begin(), str.end(), digits);
         s = *iter;
-        this->gameRools = s.str();
+        this->gameRules = s.str();
         s = *(++iter);
-        this->survivalRools = s.str();
+        this->survivalRules = s.str();
     }
 
     //Read size of field

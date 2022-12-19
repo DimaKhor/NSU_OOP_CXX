@@ -18,14 +18,13 @@ class GameState
 {
 public:
     GameState(std::string file_name);
-    std::string gameRools;
-    std::string survivalRools;
+    std::string universeName;
+    std::string gameRules;
+    std::string survivalRules;
 
     int world_h;
     int world_w;
 
-    std::string fileName;
-    std::string universeName;
     std::vector <point> cellsCoordinates;
 };
 
