@@ -9,7 +9,7 @@ Field::Field(GameState& _game)
 
 bool Field::should_be_born(int x)
 {
-    size_t found = game->gameRools.find(to_string(x));
+    size_t found = game->gameRules.find(to_string(x));
     if (found != std::string::npos)
         return true;
     else
@@ -17,7 +17,7 @@ bool Field::should_be_born(int x)
 }
 bool Field::should_survive(int x)
 {
-    size_t found = game->survivalRools.find(to_string(x));
+    size_t found = game->survivalRules.find(to_string(x));
     if (found != std::string::npos)
         return true;
     else
@@ -28,16 +28,16 @@ void Field::showRules()
 {
     cout << "This universe have these Rules: " << endl;
     cout << "#N" << game->universeName << endl;
-    cout << "#R " << "#B" << game->gameRools << "/" << "S" << game->survivalRools << endl;
+    cout << "#R " << "#B" << game->gameRules << "/" << "S" << game->survivalRules << endl;
     cout << "#S " << game->world_w << " " << game->world_h << endl;
-    sleep(10);
+    sleep(3);
 }
 
 void Field::saveField(string outputFile)
 {
     std::ofstream fout(outputFile);
     fout << "#N " << game->universeName << endl;
-    fout << "#R " << "#B" << game->gameRools << "/" << "S" << game->survivalRools << endl;
+    fout << "#R " << "#B" << game->gameRules << "/" << "S" << game->survivalRules << endl;
     fout << "#S " << game->world_w << " " << game->world_h << endl;
 
     for (size_t y = 0; y < game->world_h; y++)
@@ -65,76 +65,15 @@ void Field::nextWorld()
         {
             neighbours = 0;
             bool isAlive = world[i][y].point_is_life;
-            if (y == 0 && i==0) {
-                _x = game->world_w - 1;
-                x_ = i + 1;
-                _y = game->world_h - 1;
-                y_ = y + 1;
-            }
-            else if (y==0 && i==game->world_w-1){
-                _x = i - 1;
-                x_ = 0;
-                _y = game->world_h - 1;
-                y_ = y + 1;
-            }
-            else if (y == game->world_h-1 && i == 0) {
-                _x = game->world_w - 1;
-                x_ = i + 1;
-                _y = y-1;
-                y_ = 0;
-            }
-            else if (y == game->world_h - 1 && i == game->world_w - 1) {
-                _x = i - 1;
-                x_ = 0;
-                _y = y - 1;
-                y_ = 0;
-            }
-            else if (y == 0) {
-                _x = i - 1;
-                x_ = i + 1;
-                _y = game->world_h - 1;
-                y_ = y + 1;
-            }
-            else if (y == game->world_h - 1) {
-                _x = i - 1;
-                x_ = i + 1;
-                _y = y - 1;
-                y_ = 0;
-            }
-            else if (i == 0) {
-                _x = game->world_w - 1;
-                x_ = i + 1;
-                _y = y - 1;
-                y_ = y + 1;
-            }
-            else if (i == game->world_w - 1) {
-                _x = i - 1;
-                x_ = 0;
-                _y = game->world_h - 1;
-                y_ = y + 1;
-            }
-            else {
-                _x = i - 1;
-                x_ = i + 1;
-                _y = y - 1;
-                y_ = y + 1;
-            }
 
-            /*_x = (i + game->world_w) % game->world_w - 1;
-            x_ = (i + game->world_w) % game->world_w + 1;
-            _y = (i + game->world_h) % game->world_h - 1;
-            y_ = (i + game->world_h) % game->world_h + 1;*/
+            _x = (i + game->world_w - 1) % game->world_w;
+            x_ = (i + game->world_w + 1) % game->world_w;
+            _y = (y + game->world_h - 1) % game->world_h;
+            y_ = (y + game->world_h + 1) % game->world_h;
 
-            if (world[_x][_y].point_is_life) neighbours++;
-            if (world[i][_y].point_is_life) neighbours++;
-            if (world[x_][_y].point_is_life) neighbours++;
-
-            if (world[_x][y].point_is_life) neighbours++;
-            if (world[x_][y].point_is_life) neighbours++;
-
-            if (world[_x][y_].point_is_life) neighbours++;
-            if (world[i][y_].point_is_life) neighbours++;
-            if (world[x_][y_].point_is_life) neighbours++;
+            neighbours += world[_x][_y].point_is_life + world[i][_y].point_is_life + world[x_][_y].point_is_life +
+                    world[_x][y].point_is_life + world[x_][y].point_is_life +
+                    world[_x][y_].point_is_life + world[i][y_].point_is_life + world[x_][y_].point_is_life;
 
             if (should_be_born(neighbours) && !isAlive)
                 temp.push_back(point( true, i, y ));
