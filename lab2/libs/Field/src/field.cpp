@@ -27,7 +27,7 @@ bool Field::should_survive(int x)
 void Field::showRules()
 {
     cout << "This universe have these Rules: " << endl;
-    cout << "#N" << game->universeName << endl;
+    cout << "#N " << game->universeName << endl;
     cout << "#R " << "#B" << game->gameRules << "/" << "S" << game->survivalRules << endl;
     cout << "#S " << game->world_w << " " << game->world_h << endl;
     sleep(3);
