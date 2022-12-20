@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <unistd.h>
-#include "gamestate.h"
+#include "gameState.h"
 
 class Field
 {
