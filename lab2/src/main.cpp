@@ -14,9 +14,9 @@ int main(int argc, char** argv)
     if (inputFile.empty())
         inputFile = "file.txt";
 
-    GameState mylife(inputFile);
+    GameState life(inputFile);
 
-    Field field(mylife);
+    Field field(life);
 
     gameOfLife(field, gameMode, iterations, outputFile);
 
