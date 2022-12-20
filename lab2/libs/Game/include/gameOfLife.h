@@ -11,11 +11,10 @@
 
 #include "field.h"
 #include "message.h"
-#include "commandstate.h"
+#include "commandState.h"
 
 const int online = 1;
 const int offline = 0;
-
 
 void gameModeChoice(int& gameMode, int& iterations, std::string& inputFile, std::string& outputFile, int argc, char** argv);
 
