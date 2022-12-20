@@ -1,5 +1,5 @@
 
-#include "commandstate.h"
+#include "commandState.h"
 
 int CommandState::readCommand()
 {
