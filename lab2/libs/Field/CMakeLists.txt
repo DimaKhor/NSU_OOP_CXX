@@ -11,12 +11,12 @@ target_link_directories(${LIBRARY_NAME} PUBLIC ${CMAKE_BINARY_DIR}/libs/GameStat
 target_link_libraries(${LIBRARY_NAME} PUBLIC GameState)
 
 
-#include(FetchContent)
-#FetchContent_Declare(
-#        googletest
-#        URL https://github.com/google/googletest/archive/58d77fa8070e8cec2dc1ed015d66b454c8d78850.zip
-#)
-#FetchContent_MakeAvailable(googletest)
-#
-#add_executable(${TEST_LIBRARY_NAME} ${TEST_SOURCE})
-#target_link_libraries(${TEST_LIBRARY_NAME} gtest_main ${LIBRARY_NAME})
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/58d77fa8070e8cec2dc1ed015d66b454c8d78850.zip
+)
+FetchContent_MakeAvailable(googletest)
+
+add_executable(${TEST_LIBRARY_NAME} ${TEST_SOURCE})
+target_link_libraries(${TEST_LIBRARY_NAME} gtest_main ${LIBRARY_NAME})
