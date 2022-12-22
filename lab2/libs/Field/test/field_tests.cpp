@@ -3,9 +3,8 @@
 
 TEST(field_tests, print_world_test)
 {
-    std::stringstream stream; //откроем файл для вывод
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
     GameState life(inputFile);
@@ -27,9 +26,8 @@ TEST(field_tests, print_world_test)
 
 TEST(field_tests, rules_test)
 {
-    std::stringstream stream; //откроем файл для вывод
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
     GameState life(inputFile);
@@ -43,9 +41,8 @@ TEST(field_tests, rules_test)
 };
 
 TEST(field_tests, next_world_test) {
-    std::stringstream stream; //откроем файл для вывод
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
     GameState life(inputFile);

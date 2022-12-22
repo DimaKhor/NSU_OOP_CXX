@@ -3,9 +3,8 @@
 
 TEST(message_tests, help_test)
 {
-    std::stringstream stream; //откроем файл для выводa
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     Message message;
     message.helpMessage();
@@ -20,9 +19,8 @@ TEST(message_tests, help_test)
 
 TEST(message_tests, unknown_test)
 {
-    std::stringstream stream; //откроем файл для выводa
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     Message message;
     message.unknownCommand();
@@ -32,9 +30,8 @@ TEST(message_tests, unknown_test)
 
 TEST(message_tests, warning_test)
 {
-    std::stringstream stream; //откроем файл для выводa
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     Message message;
     message.warningMessage();
@@ -44,9 +41,8 @@ TEST(message_tests, warning_test)
 
 TEST(message_tests, start_test)
 {
-    std::stringstream stream; //откроем файл для выводa
-    std::streambuf *coutbuf = std::cout.rdbuf(); //запомним старый буфер
-    std::cout.rdbuf(stream.rdbuf()); //и теперь все будет в файл out.txt!
+    std::stringstream stream;
+    std::cout.rdbuf(stream.rdbuf());
 
     Message message;
     message.startMessage();
