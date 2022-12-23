@@ -6,7 +6,7 @@ TEST(field_tests, print_world_test)
     std::stringstream stream;
     std::cout.rdbuf(stream.rdbuf());
 
-    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
+    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/config/file.txt";
     GameState life(inputFile);
     Field field(life);
     field.initWorld();
@@ -29,7 +29,7 @@ TEST(field_tests, rules_test)
     std::stringstream stream;
     std::cout.rdbuf(stream.rdbuf());
 
-    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
+    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/config/file.txt";
     GameState life(inputFile);
     Field field(life);
     field.showRules();
@@ -44,7 +44,7 @@ TEST(field_tests, next_world_test) {
     std::stringstream stream;
     std::cout.rdbuf(stream.rdbuf());
 
-    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
+    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/config/file.txt";
     GameState life(inputFile);
     Field field(life);
 

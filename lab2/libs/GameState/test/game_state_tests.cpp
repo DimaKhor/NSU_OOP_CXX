@@ -3,7 +3,7 @@
 
 TEST(game_state_tests, game_state_tests)
 {
-    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/cmake-build-debug/file.txt";
+    std::string inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/config/file.txt";
     GameState life(inputFile);
 
     EXPECT_EQ(life.universeName, "Basic");
