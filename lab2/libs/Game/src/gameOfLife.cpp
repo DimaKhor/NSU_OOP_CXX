@@ -4,6 +4,8 @@ using namespace std;
 
 void gameModeChoice(int& gameMode, int& iterations, string& inputFile, string& outputFile, int argc, char** argv)
 {
+    const int offline = 0;
+
     Message mym;
     mym.startMessage();
 
@@ -32,6 +34,8 @@ void gameModeChoice(int& gameMode, int& iterations, string& inputFile, string& o
 
 void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
 {
+    const int online = 1;
+
     field.initWorld();
     field.showRules();
     int command;
@@ -44,8 +48,9 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             command = com.readCommand();
             if (command == com.dump)
             {
+                cin >> outputFile;
                 field.saveField(outputFile);
-                cout << "file saved in: " << outputFile << "!";
+                cout << "file saved in: " << outputFile << "!\n";
             }
             else if (command == com.exit)
             {
@@ -55,7 +60,6 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             else if (command == com.help)
             {
                 mym.helpMessage();
-
             }
             else if (command == com.tick)
             {
