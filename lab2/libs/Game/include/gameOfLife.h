@@ -13,9 +13,6 @@
 #include "message.h"
 #include "commandState.h"
 
-const int online = 1;
-const int offline = 0;
-
 void gameModeChoice(int& gameMode, int& iterations, std::string& inputFile, std::string& outputFile, int argc, char** argv);
 
 void gameOfLife(Field field, int gameMode, int iterations, std::string outputFile);
