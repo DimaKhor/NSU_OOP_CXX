@@ -13,7 +13,7 @@ int main(int argc, char** argv)
     gameModeChoice(gameMode, iterations, inputFile, outputFile, argc, argv);
 
     if (inputFile.empty())
-        inputFile = "/Users/dima.khoroshev/CLionProjects/NSU_OOP_labs/lab2/config/file.txt";
+        inputFile = "../config/file.txt";
 
     GameState life(inputFile);
 
