@@ -55,7 +55,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             else if (command == com.exit)
             {
                 cout << "Thank you for playing, can't wait to see you again :)" << endl;
-                exit(0);
+                return;
             }
             else if (command == com.help)
             {
@@ -63,7 +63,18 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
             }
             else if (command == com.tick)
             {
-                cin >> iterations;
+                string except;
+                cin >> except;
+
+                try {
+                    iterations = stoi(except);
+                }
+                catch(exception& exc) {
+                    mym.warningMessage();
+                    mym.unknownCommand();
+                    continue;
+                }
+
                 while (iterations > 0)
                 {
                     if (iterations == 1)
@@ -94,5 +105,7 @@ void gameOfLife(Field field, int gameMode, int iterations, string outputFile)
         field.saveField(outputFile);
 
         cout << "file saved in: " << outputFile << "!";
+
+        return;
     }
 }
