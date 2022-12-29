@@ -2,7 +2,7 @@ set(LIBRARY_NAME Game)
 set(LIBRARY_HEADERS_DIR include)
 set(LIBRARY_SOURCE src/gameOflife.cpp)
 
-set(TEST_LIBRARY_NAME game_tests)
+set(TEST_LIBRARY_NAME game_of_life_tests)
 set(TEST_SOURCE test/game_of_life_tests.cpp)
 
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCE})
