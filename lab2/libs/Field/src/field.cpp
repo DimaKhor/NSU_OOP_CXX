@@ -56,7 +56,7 @@ void Field::saveField(string outputFile)
 
 void Field::nextWorld()
 {
-    vector<point> temp;
+    vector<Point> temp;
 
     int neighbours = 0, _x, _y, x_, y_; //x and y on top and bottom(left and right for x axis)
     for (int y = 0; y < game->world_h; y++)
@@ -76,13 +76,13 @@ void Field::nextWorld()
                     world[_x][y_].point_is_life + world[i][y_].point_is_life + world[x_][y_].point_is_life;
 
             if (should_be_born(neighbours) && !isAlive)
-                temp.push_back(point( true, i, y ));
+                temp.push_back(Point( true, i, y ));
 
             if (should_survive(neighbours) && isAlive)
-                temp.push_back(point( true, i, y ));
+                temp.push_back(Point( true, i, y ));
 
             if (!should_survive(neighbours) && isAlive)
-                temp.push_back(point( false, i, y ));
+                temp.push_back(Point( false, i, y ));
 
         }
     }
@@ -98,7 +98,7 @@ void Field::nextWorld()
 
 void Field::initWorld()
 {
-    vector<point> temp;
+    vector<Point> temp;
     world.reserve(game->world_h);
 
     for (size_t y = 0; y < game->world_h; y++)
@@ -106,7 +106,7 @@ void Field::initWorld()
         temp.resize(0);
         for (size_t i = 0; i < game->world_w; i++)
         {
-            point z( 0, 0, 0 );
+            Point z( 0, 0, 0 );
             temp.push_back(z);
         }
         world.push_back(temp);
@@ -115,7 +115,7 @@ void Field::initWorld()
     for (auto &x : this->game->cellsCoordinates)
     {
         temp.reserve(game->world_w);
-        world[x.x][x.y] = point( true, x.x, x.y );
+        world[x.x][x.y] = Point( true, x.x, x.y );
     }
 
 }
