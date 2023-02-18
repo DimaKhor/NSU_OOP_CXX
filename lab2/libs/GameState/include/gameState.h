@@ -5,10 +5,10 @@
 #include <fstream>
 #include <regex>
 
-struct point
+struct Point
 {
-    point() = default;
-    point(bool p_is_life, int xt, int yt);
+    Point() = default;
+    Point(bool p_is_life, int xt, int yt);
     bool point_is_life;
     int x = 0;
     int y = 0;
@@ -25,7 +25,7 @@ public:
     int world_h;
     int world_w;
 
-    std::vector <point> cellsCoordinates;
+    std::vector <Point> cellsCoordinates;
 };
 
 #endif

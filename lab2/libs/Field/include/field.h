@@ -13,7 +13,7 @@ public:
     Field(GameState& _game);
     GameState* game;
     ~Field() = default;
-    std::vector< std::vector<point> > world;
+    std::vector< std::vector<Point> > world;
 
     void initWorld();
     void nextWorld();

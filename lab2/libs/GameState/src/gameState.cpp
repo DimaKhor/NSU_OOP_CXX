@@ -2,7 +2,7 @@
 
 using namespace std;
 
-point::point(bool p_is_life, int xt, int yt)
+Point::Point(bool p_is_life, int xt, int yt)
 {
     point_is_life = p_is_life;
     x = xt;
@@ -63,7 +63,7 @@ GameState::GameState(string file_name)
     while (!fin.eof())
     {
         fin >> x >> y;
-        this->cellsCoordinates.push_back(point(true, x, y));
+        this->cellsCoordinates.push_back(Point(true, x, y));
     }
 
 }
